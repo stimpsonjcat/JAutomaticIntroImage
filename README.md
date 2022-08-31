@@ -1,7 +1,7 @@
 # Joomla Content - Automatic Intro Image plugin
-This is the Content - Automatic Intro Image plugin for Joomla 3.2+.
+This is the Content - Automatic Intro Image plugin for Joomla 3.10 and Joomla 4.
 
-**this plugin is no more maintained**
+The original plugin was created by Mattia Verga. It is now compatible with Joomla 4. For older versions of Joomla, download the original plugin here: https://github.com/mattiaverga/JAutomaticIntroImage 
 
 This plugin automatically create a resized version of the full size article image and set it as the intro image.Simply enable the plugin, set parameters and let blank the intro image field when saving the article.
 
@@ -10,6 +10,9 @@ Automatic Intro Image needs IMagick php module to be installed and enabled on yo
 See https://github.com/mattiaverga/JAutomaticIntroImage/wiki for more help.
 
 ## Changelog
+### v1.4
+* The plugin is now compatible with Joomla 4 and Joomla 3.10. 
+
 ### v1.3.3
 * Fix: allow plugin to work in frontend
 
