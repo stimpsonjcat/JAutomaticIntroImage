@@ -7,7 +7,7 @@ This plugin automatically create a resized version of the full size article imag
 
 Automatic Intro Image needs IMagick php module to be installed and enabled on your Joomla server.
 
-See https://github.com/mattiaverga/JAutomaticIntroImage/wiki for more help.
+See https://github.com/stimpsonjcat/JAutomaticIntroImage/wiki for more help.
 
 ## Changelog
 ### v1.4
