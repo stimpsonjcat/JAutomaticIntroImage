@@ -1,11 +1,14 @@
 <?php
 /**
- * @copyright  Copyright (c) 2016- Mattia Verga. All rights reserved.
+ * @copyright  Copyright (c) 2022- Steven Trooster. All rights reserved.
+ *             Based on a plugin created by Mattia Verga.
  * @license    GNU General Public License version 3, or later
  * @Joomla     For Joomla 3.10 and Joomla 4
  */
 // no direct access
 defined( '_JEXEC' ) or die;
+
+use Joomla\CMS\Factory;
 
 class plgContentAutomaticIntroImage extends JPlugin
 {
@@ -16,7 +19,7 @@ class plgContentAutomaticIntroImage extends JPlugin
         * @since  3.1
         */
         protected $autoloadLanguage = true;
-
+        
         /**
         * Automatic creation of resized intro image from article full image
         *
@@ -57,7 +60,7 @@ class plgContentAutomaticIntroImage extends JPlugin
                 // Return if intro image is already set
                 if (isset($images->image_intro) and !empty($images->image_intro))
                 {
-                        JFactory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_ALREADY_SET'), 'notice');
+                        Factory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_ALREADY_SET'), 'notice');
                         return true;
                 }
                 
@@ -71,7 +74,7 @@ class plgContentAutomaticIntroImage extends JPlugin
                     $width < 10 OR $width > 2000 OR
                     $height < 10 OR $height > 2000)
                 {
-                        JFactory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_SETTINGS_ERROR'), 'error');
+                        Factory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_SETTINGS_ERROR'), 'error');
                         return true;
                 }
                 
@@ -146,11 +149,11 @@ class plgContentAutomaticIntroImage extends JPlugin
                 if (!file_exists(JPATH_ROOT . '/' . $images->image_intro))
                 {
                     $thumb->writeImage(JPATH_ROOT . '/' . $images->image_intro);
-                    JFactory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_CREATED', $images->image_intro), 'message');
+                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_CREATED', $images->image_intro), 'message');
                 }
                 else
                 {
-                    JFactory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_EXIST', $images->image_intro), 'message');
+                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_EXIST', $images->image_intro), 'message');
                 }
                 
                 $article->images = json_encode($images);
