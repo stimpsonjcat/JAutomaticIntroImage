@@ -2,6 +2,7 @@
 /**
  * @copyright  Copyright (c) 2016- Mattia Verga. All rights reserved.
  * @license    GNU General Public License version 3, or later
+ * @Joomla     For Joomla 3.10 and Joomla 4
  */
 // no direct access
 defined( '_JEXEC' ) or die;
@@ -10,7 +11,6 @@ class plgContentAutomaticIntroImage extends JPlugin
 {
         /**
         * Load the language file on instantiation. Note this is only available in Joomla 3.1 and higher.
-        * If you want to support 3.0 series you must override the constructor
         *
         * @var    boolean
         * @since  3.1
