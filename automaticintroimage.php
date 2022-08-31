@@ -57,7 +57,7 @@ class plgContentAutomaticIntroImage extends JPlugin
                 // Return if intro image is already set
                 if (isset($images->image_intro) and !empty($images->image_intro))
                 {
-                        Factory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_ALREADY_SET'), 'notice');
+                        JFactory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_ALREADY_SET'), 'notice');
                         return true;
                 }
                 
@@ -71,7 +71,7 @@ class plgContentAutomaticIntroImage extends JPlugin
                     $width < 10 OR $width > 2000 OR
                     $height < 10 OR $height > 2000)
                 {
-                        Factory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_SETTINGS_ERROR'), 'error');
+                        JFactory::getApplication()->enqueueMessage(JText::_('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_SETTINGS_ERROR'), 'error');
                         return true;
                 }
                 
@@ -146,11 +146,11 @@ class plgContentAutomaticIntroImage extends JPlugin
                 if (!file_exists(JPATH_ROOT . '/' . $images->image_intro))
                 {
                     $thumb->writeImage(JPATH_ROOT . '/' . $images->image_intro);
-                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_CREATED', $images->image_intro), 'message');
+                    JFactory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_CREATED', $images->image_intro), 'message');
                 }
                 else
                 {
-                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_EXIST', $images->image_intro), 'message');
+                    JFactory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_EXIST', $images->image_intro), 'message');
                 }
                 
                 $article->images = json_encode($images);
