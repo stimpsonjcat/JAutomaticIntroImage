@@ -2,7 +2,7 @@
 <extension version="3.2" type="plugin" group="content" method="upgrade">
         <name>Content - Automatic Intro Image</name>
         <author>Steven Trooster</author>
-        <creationDate>21 August 2022</creationDate>
+        <creationDate>31 August 2022</creationDate>
         <copyright>Copyright (C) 2022 Steven Trooster. All rights reserved.</copyright>
         <license>GNU General Public License version 3 or later.</license>
         <authorEmail>info@ghost-art.nl</authorEmail>
@@ -123,6 +123,6 @@
         </config>
         <updateservers>
                 <!-- Note: No spaces or linebreaks allowed between the server tags -->
-                <server type="extension" name="Automatic Inro Image Update Site">https://raw.githubusercontent.com/mattiaverga/JAutomaticIntroImage/master/manifest.xml</server>
+                <server type="extension" name="Automatic Inro Image Update Site">https://raw.githubusercontent.com/stimpsonjcat/JAutomaticIntroImage/master/manifest.xml</server>
         </updateservers>
 </extension>
