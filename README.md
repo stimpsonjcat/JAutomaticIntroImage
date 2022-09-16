@@ -14,7 +14,7 @@ See https://github.com/stimpsonjcat/JAutomaticIntroImage/wiki for more help.
 ### v1.4.2
 * Installer is now Joomla 4 only.
 * Fix: installing language files in Joomla 4
-* Fix: corrected tyypos in Dutch language file
+* Fix: corrected typos in Dutch language file
 
 ### v1.4.1
 * Added: Dutch translation.
