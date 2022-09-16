@@ -2,24 +2,23 @@
 <extension version="3.2" type="plugin" group="content" method="upgrade">
         <name>Content - Automatic Intro Image</name>
         <author>Steven Trooster</author>
-        <creationDate>31 August 2022</creationDate>
+        <creationDate>2022-09-16</creationDate>
         <copyright>Copyright (C) 2022 Steven Trooster. All rights reserved.</copyright>
         <license>GNU General Public License version 3 or later.</license>
         <authorEmail>info@ghost-art.nl</authorEmail>
-        <version>1.4.1</version>
+        <version>1.4.2</version>
         <description>PLG_CONTENT_AUTOMATICINTROIMAGE_XML_DESCRIPTION</description>
         <files>
                 <filename plugin="automaticintroimage">automaticintroimage.php</filename>
                 <filename>index.html</filename>
-                <folder>language</folder>
         </files>
-        <languages>
-            <language tag="en-GB">en-GB.plg_content_automaticintroimage.ini</language>
-            <language tag="en-GB">en-GB.plg_content_automaticintroimage.sys.ini</language>
-            <language tag="it-IT">it-IT.plg_content_automaticintroimage.ini</language>
-            <language tag="it-IT">it-IT.plg_content_automaticintroimage.sys.ini</language>
-            <language tag="nl-NL">nl_NL.plg_content_automaticintroimage.ini</language>
-            <language tag="nl-NL">nl_NL.plg_content_automaticintroimage.sys.ini</language>
+        <languages folder="language">
+            <language tag="en-GB">en-GB/plg_content_automaticintroimage.ini</language>
+            <language tag="en-GB">en-GB/plg_content_automaticintroimage.sys.ini</language>
+            <language tag="it-IT">it-IT/plg_content_automaticintroimage.ini</language>
+            <language tag="it-IT">it-IT/plg_content_automaticintroimage.sys.ini</language>
+            <language tag="nl-NL">nl-NL/plg_content_automaticintroimage.ini</language>
+            <language tag="nl-NL">nl-NL/plg_content_automaticintroimage.sys.ini</language>
         </languages>
         <config>
                 <fields name="params">

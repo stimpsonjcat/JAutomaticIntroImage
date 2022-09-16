@@ -6,12 +6,12 @@
 		<element>automaticintroimage</element>
 		<type>plugin</type>
                 <folder>content</folder>
-		<version>1.4</version>
+		<version>1.4.2</version>
 		<client>site</client>
-		<infourl title="Automatic Intro Image plugin">https://github.com/stimpsonjcat/JAutomaticIntroImage/releases/tag/1.4</infourl>
+		<infourl title="Automatic Intro Image plugin">https://github.com/stimpsonjcat/JAutomaticIntroImage/releases/tag/1.4.2</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/stimpsonjcat/JAutomaticIntroImage/archive/1.4.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/stimpsonjcat/JAutomaticIntroImage/archive/1.4.2.zip</downloadurl>
 		</downloads>
-		<targetplatform name="joomla" version="(4|3\.([89]|10))\b"/>
+		<targetplatform name="joomla" version="4.0"/>
 	</update>
 </updates>
