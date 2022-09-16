@@ -1,5 +1,5 @@
 # Joomla Content - Automatic Intro Image plugin
-This is the Content - Automatic Intro Image plugin for Joomla 3.10 and Joomla 4.
+This is the Content - Automatic Intro Image plugin for Joomla 4.
 
 The original plugin was created by Mattia Verga. It is now compatible with Joomla 4. For older versions of Joomla, download the original plugin here: https://github.com/mattiaverga/JAutomaticIntroImage 
 
@@ -10,6 +10,15 @@ Automatic Intro Image needs IMagick php module to be installed and enabled on yo
 See https://github.com/stimpsonjcat/JAutomaticIntroImage/wiki for more help.
 
 ## Changelog
+
+### v1.4.2
+* Installer is now Joomla 4 only.
+* Fix: installing language files in Joomla 4
+* Fix: corrected typos in Dutch language file
+
+### v1.4.1
+* Added: Dutch translation.
+
 ### v1.4
 * The plugin is now compatible with Joomla 4 and Joomla 3.10. 
 
