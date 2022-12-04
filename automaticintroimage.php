@@ -58,7 +58,7 @@ class plgContentAutomaticIntroImage extends JPlugin
                         return true;
                 }
 
-                if ($this->params->get('UseFirstImage'))
+                if ($this->params->get('UseFirstImage') == 1)
                 {
                     $dom = new DOMDocument();
                     $dom->loadHTML($article->introtext);
@@ -100,12 +100,12 @@ class plgContentAutomaticIntroImage extends JPlugin
                 // Create resized image
                 $thumb = new Imagick(JPATH_ROOT . '/' . $src_img);
 
-                $thumb->resizeImage($width,
-                                    $height,
-                                    Imagick::FILTER_LANCZOS,
-                                    1,
-                                    $this->params->get('MaintainAspectRatio')
-                                    );
+                $thumb->scaleImage(
+                    ($this->params->get('Crop'))?0:$width,
+                    $height,
+                    $this->params->get('MaintainAspectRatio')
+                );
+
                 if ($this->params->get('ChangeImageQuality') == 1)
                 {
                     $thumb->setImageCompressionQuality($compression_level);
@@ -122,6 +122,14 @@ class plgContentAutomaticIntroImage extends JPlugin
                     $width = $thumb->getImageWidth();
                     $height = $thumb->getImageHeight();
                 }
+                else
+                if ($this->params->get('Crop') == 1)
+                {
+                    $thumb->cropImage($width,
+                        $height,
+                        ($thumb->getImageWidth()-$width)/2,
+                        0);
+                }
 
                 // Set image intro name
                 // {width} and {height} placeholders are changed to values
@@ -134,17 +142,33 @@ class plgContentAutomaticIntroImage extends JPlugin
                                           $suffix);
                 }
                 $extension_pos = strrpos($src_img, '.');
-                $images->image_intro = substr($src_img, 0, $extension_pos) .
+                $image_with_suffix = substr($src_img, 0, $extension_pos) .
                                         $suffix .
                                         substr($src_img, $extension_pos);
 
+                // Put the image in an absolute directory if said to do so
+                if ($this->params->get('AbsoluteDir') == 1)
+                {
+                    // Check if the subdir already exists
+                    $thumb_dir = JPATH_ROOT . '/' . $this->params->get('AbsDirPath');
+                    if (!JFolder::exists($thumb_dir))
+                    {
+                        JFolder::create($thumb_dir);
+                    }
+                    $subdir_pos = strrpos($image_with_suffix, '/');
+                    $thumb_savepath = $thumb_dir .
+                        substr($image_with_suffix, $subdir_pos);
+                    $images->image_intro = $this->params->get('AbsDirPath') .
+                        substr($image_with_suffix, $subdir_pos);
+                }
+                else
                 // Put the image in a subdir if set to do so
                 if ($this->params->get('PutInSubdir') == 1)
                 {
-                    $subdir_pos = strrpos($images->image_intro, '/');
-                    $images->image_intro = substr($images->image_intro, 0, $subdir_pos) .
+                    $subdir_pos = strrpos($image_with_suffix, '/');
+                    $images->image_intro = substr($image_with_suffix, 0, $subdir_pos) .
                                         '/' . $this->params->get('Subdir') .
-                                        substr($images->image_intro, $subdir_pos);
+                                        substr($image_with_suffix, $subdir_pos);
 
                     // Check if the subdir already exist or create it
                     $img_subdir = JPATH_ROOT . '/' . substr($images->image_intro, 0, strrpos($images->image_intro, '/'));
@@ -152,6 +176,12 @@ class plgContentAutomaticIntroImage extends JPlugin
                     {
                         JFolder::create($img_subdir);
                     }
+                    $thumb_savepath = JPATH_ROOT . '/' . $images->image_intro;
+                }
+                else
+                {
+                    $thumb_savepath = JPATH_ROOT . '/' . $image_with_suffix;
+                    $images->image_intro = $image_with_suffix;
                 }
 
                 // Copy Alt and Title fields
@@ -165,14 +195,14 @@ class plgContentAutomaticIntroImage extends JPlugin
 
                 // Write resized image if it doesn't exist
                 // and set Joomla object values
-                if (!file_exists(JPATH_ROOT . '/' . $images->image_intro))
+                if (!file_exists($thumb_savepath))
                 {
-                    $thumb->writeImage(JPATH_ROOT . '/' . $images->image_intro);
-                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_CREATED', $images->image_intro), 'message');
+                    $thumb->writeImage($thumb_savepath);
+                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_CREATED', $thumb_savepath), 'message');
                 }
                 else
                 {
-                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_EXIST', $images->image_intro), 'message');
+                    Factory::getApplication()->enqueueMessage(JText::sprintf('PLG_CONTENT_AUTOMATICINTROIMAGE_MESSAGE_EXIST', $thumb_savepath), 'message');
                 }
 
                 $article->images = json_encode($images);
