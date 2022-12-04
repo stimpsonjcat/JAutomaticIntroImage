@@ -30,25 +30,52 @@
                                         label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_SUFFIX_LABEL"
                                         required="1"
                                 />
-                                
-                                <field name="PutInSubdir" type="radio"
+
+                                <field name="UseFirstImage" type="radio"
                                         default="0"
-                                        description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_PUTSUBDIR_DESCRIPTION"
-                                        label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_PUTSUBDIR_LABEL"
+                                        description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_USEFIRSTIMAGE_DESCRIPTION"
+                                        label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_USEFIRSTIMAGE_LABEL"
                                 >
                                         <option value="0">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_NO</option>
                                         <option value="1">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_YES</option>
                                 </field>
-                                
+
+                                <field name="AbsoluteDir" type="radio"
+                                        default="0"
+                                        description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_ABSOLUTEDIR_DESCRIPTION"
+                                        label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_ABSOLUTEDIR_LABEL"
+                                >
+                                        <option value="0">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_NO</option>
+                                        <option value="1">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_YES</option>
+                                </field>
+
+                                <field name="AbsDirPath" type="text"
+                                        default="images/thumb"
+                                        description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_ABSDIRPATH_DESCRIPTION"
+                                        label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_ABSDIRPATH_LABEL"
+                                        required="1"
+                                        showon="AbsoluteDir:1"
+                                />
+
+                                <field name="PutInSubdir" type="radio"
+                                        default="0"
+                                        description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_PUTSUBDIR_DESCRIPTION"
+                                        label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_PUTSUBDIR_LABEL"
+                                        showon="AbsoluteDir:0"
+                                >
+                                        <option value="0">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_NO</option>
+                                        <option value="1">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_YES</option>
+                                </field>
+
                                 <field name="Subdir" type="text"
                                         default="thumb"
                                         description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_SUBDIR_DESCRIPTION"
                                         label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_SUBDIR_LABEL"
                                         required="1"
-                                        showon="PutInSubdir:1"
+                                        showon="PutInSubdir:1[AND]AbsoluteDir:0"
                                 />
                         </fieldset>
-                        
+
                         <fieldset name="image" label="PLG_CONTENT_AUTOMATICINTROIMAGE_FIELD_IMAGE_LABEL">
                                 <field name="Width" type="number"
                                         default="320"
@@ -60,7 +87,7 @@
                                         size="4"
                                         required="1"
                                 />
-                                
+
                                 <field name="Height" type="number"
                                         default="240"
                                         description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_HEIGHT_DESCRIPTION"
@@ -71,7 +98,7 @@
                                         size="4"
                                         required="1"
                                 />
-                                
+
                                 <field name="MaintainAspectRatio" type="radio"
                                         default="1"
                                         description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_RATIO_DESCRIPTION"
@@ -80,6 +107,16 @@
                                         <option value="0">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_NO</option>
                                         <option value="1">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_YES</option>
                                 </field>
+                                <field name="Crop" type="radio"
+                                        default="1"
+                                        description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_CROP_DESCRIPTION"
+                                        label="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_CROP_LABEL"
+                                        showon="MaintainAspectRatio:0"
+                                >
+                                        <option value="0">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_NO</option>
+                                        <option value="1">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_YES</option>
+                                </field>
+
                                 <field name="ChangeImageQuality" type="radio"
                                         default="0"
                                         description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_CHGIMGQLTY_DESCRIPTION"
@@ -88,7 +125,7 @@
                                         <option value="0">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_NO</option>
                                         <option value="1">PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_YES</option>
                                 </field>
-                                
+
                                 <field name="ImageQuality" type="number"
                                         default="92"
                                         description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_IMGQLTY_DESCRIPTION"
@@ -100,7 +137,7 @@
                                         required="1"
                                         showon="ChangeImageQuality:1"
                                 />
-                                
+
                                 <field name="SetProgressiveJPG" type="radio"
                                         default="1"
                                         description="PLG_CONTENT_AUTOMATICINTROIMAGE_PARAM_PROGRESSIVE_DESCRIPTION"
