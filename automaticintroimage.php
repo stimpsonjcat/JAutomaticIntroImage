@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright  Copyright (c) 2022- Steven Trooster. All rights reserved.
+ * @copyright  Copyright (c) 2023 Steven Trooster. All rights reserved.
  *             Based on a plugin created by Mattia Verga.
  * @license    GNU General Public License version 3, or later
- * @Joomla     For Joomla 3.10 and Joomla 4
+ * @Joomla     For Joomla 4
  */
 // no direct access
 defined( '_JEXEC' ) or die;
@@ -79,7 +79,7 @@ class plgContentAutomaticIntroImage extends JPlugin
                 }
                 
                 // Create resized image
-                $thumb = new Imagick(JPATH_ROOT . '/' . $images->image_fulltext);
+                $thumb = new Imagick(JPATH_ROOT . '/' . strtok($images->image_fulltext, '#'));
                 
                 $thumb->resizeImage($width,
                                     $height,
@@ -114,10 +114,10 @@ class plgContentAutomaticIntroImage extends JPlugin
                                           array($width,$height),
                                           $suffix);
                 }
-                $extension_pos = strrpos($images->image_fulltext, '.');
-                $images->image_intro = substr($images->image_fulltext, 0, $extension_pos) . 
+                $extension_pos = strrpos(strtok($images->image_fulltext, '#'), '.');
+                $images->image_intro = substr(strtok($images->image_fulltext, '#'), 0, $extension_pos) . 
                                         $suffix . 
-                                        substr($images->image_fulltext, $extension_pos);
+                                        substr(strtok($images->image_fulltext, '#'), $extension_pos);
                 
                 // Put the image in a subdir if set to do so
                 if ($this->params->get('PutInSubdir') == 1)
